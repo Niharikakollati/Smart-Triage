@@ -7,8 +7,7 @@ import {
   EyeOff,
   AlertCircle,
   Activity,
-  ArrowRight,
-  Info
+  ArrowRight
 } from 'lucide-react';
 
 export const LoginScreen: React.FC = () => {
@@ -19,7 +18,6 @@ export const LoginScreen: React.FC = () => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
-  const [showHints, setShowHints] = useState<boolean>(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -40,41 +38,34 @@ export const LoginScreen: React.FC = () => {
     }, 150);
   };
 
-  const handleFillCredentials = (u: string, p: string) => {
-    setUsername(u);
-    setPassword(p);
-    setErrorMessage(null);
-  };
-
   return (
-    <div className="flex-1 flex flex-col justify-center items-center p-4 py-8 max-w-sm mx-auto w-full animate-fadeIn">
-      {/* BRAND & HEADER */}
-      <div className="w-full text-center space-y-2 mb-6">
-        <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-tr from-red-600 via-rose-600 to-red-700 text-white shadow-xl shadow-red-600/30 border border-red-400/40">
-          <Activity className="w-7 h-7 animate-pulse" />
-        </div>
-        <div>
-          <h1 className="text-xl font-black text-white tracking-tight">
+    <div className="flex-1 flex flex-col justify-center items-center py-12 px-4 max-w-md mx-auto w-full animate-fadeIn">
+      <div className="w-full rounded-3xl bg-slate-900 border border-slate-800 p-7 sm:p-9 shadow-2xl space-y-6">
+        {/* Header Branding */}
+        <div className="text-center space-y-2">
+          <div className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-gradient-to-tr from-red-600 via-rose-600 to-red-500 text-white shadow-lg shadow-red-600/30 border border-red-400/40 mb-1">
+            <Activity className="w-6 h-6 animate-pulse" />
+          </div>
+          <h1 className="text-2xl font-black text-white tracking-tight">
             Smart Triage
           </h1>
-          <p className="text-xs text-slate-400 mt-1">
-            Sign in to access your portal dashboard
+          <p className="text-xs text-slate-400">
+            Sign in with your credentials to access your portal
           </p>
         </div>
-      </div>
 
-      {/* LOGIN CARD */}
-      <div className="w-full rounded-3xl bg-slate-900 border border-slate-800 p-5 shadow-2xl space-y-4">
+        {/* Error Alert */}
         {errorMessage && (
-          <div className="p-3 rounded-xl bg-red-950/80 border border-red-800 text-red-200 text-xs flex items-start gap-2">
+          <div className="p-3.5 rounded-xl bg-red-950/80 border border-red-800 text-red-200 text-xs flex items-start gap-2.5 animate-shake">
             <AlertCircle className="w-4 h-4 text-red-400 shrink-0 mt-0.5" />
             <span>{errorMessage}</span>
           </div>
         )}
 
+        {/* Login Form: ONLY Username and Password */}
         <form onSubmit={handleSubmit} className="space-y-4">
           {/* USERNAME */}
-          <div className="space-y-1.5">
+          <div className="space-y-1.5 text-left">
             <label className="text-xs font-bold text-slate-300 block">
               Username
             </label>
@@ -85,20 +76,21 @@ export const LoginScreen: React.FC = () => {
               <input
                 type="text"
                 required
+                autoFocus
                 autoComplete="username"
                 value={username}
                 onChange={(e) => {
                   setUsername(e.target.value);
                   setErrorMessage(null);
                 }}
-                placeholder="Enter username"
-                className="w-full bg-slate-950 border border-slate-800 rounded-xl pl-10 pr-3.5 py-3 text-xs text-white placeholder:text-slate-600 focus:outline-hidden focus:border-red-500 transition-colors font-mono"
+                placeholder="Enter your username"
+                className="w-full bg-slate-950 border border-slate-800 rounded-xl pl-10 pr-3.5 py-3 text-xs text-white placeholder:text-slate-600 focus:outline-hidden focus:border-red-500 transition-colors"
               />
             </div>
           </div>
 
           {/* PASSWORD */}
-          <div className="space-y-1.5">
+          <div className="space-y-1.5 text-left">
             <label className="text-xs font-bold text-slate-300 block">
               Password
             </label>
@@ -115,27 +107,27 @@ export const LoginScreen: React.FC = () => {
                   setPassword(e.target.value);
                   setErrorMessage(null);
                 }}
-                placeholder="Enter password"
-                className="w-full bg-slate-950 border border-slate-800 rounded-xl pl-10 pr-10 py-3 text-xs text-white placeholder:text-slate-600 focus:outline-hidden focus:border-red-500 transition-colors font-mono"
+                placeholder="Enter your password"
+                className="w-full bg-slate-950 border border-slate-800 rounded-xl pl-10 pr-10 py-3 text-xs text-white placeholder:text-slate-600 focus:outline-hidden focus:border-red-500 transition-colors"
               />
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-500 hover:text-slate-300"
+                className="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-500 hover:text-slate-300 transition-colors cursor-pointer"
               >
                 {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
               </button>
             </div>
           </div>
 
-          {/* SIGN IN BUTTON */}
+          {/* SIGN IN SUBMIT BUTTON */}
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full py-3.5 rounded-xl bg-gradient-to-r from-red-600 via-rose-600 to-red-700 hover:from-red-500 hover:to-rose-500 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg shadow-red-600/30 active:scale-[0.99] transition-all disabled:opacity-50 mt-2"
+            className="w-full py-3.5 rounded-xl bg-gradient-to-r from-red-600 via-rose-600 to-red-700 hover:from-red-500 hover:to-rose-500 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg shadow-red-600/30 active:scale-[0.99] transition-all disabled:opacity-50 mt-2 cursor-pointer"
           >
             {isSubmitting ? (
-              <span>Authenticating...</span>
+              <span>Verifying Credentials...</span>
             ) : (
               <>
                 <span>Sign In</span>
@@ -144,81 +136,6 @@ export const LoginScreen: React.FC = () => {
             )}
           </button>
         </form>
-      </div>
-
-      {/* DISCREET DEMO CREDENTIALS ACCORDION */}
-      <div className="w-full mt-4 text-center">
-        <button
-          type="button"
-          onClick={() => setShowHints(!showHints)}
-          className="text-[11px] text-slate-400 hover:text-slate-200 inline-flex items-center gap-1.5 transition-colors py-1 px-2 rounded-lg"
-        >
-          <Info className="w-3.5 h-3.5 text-slate-500" />
-          <span>{showHints ? 'Hide Demo Logins' : 'View Demo Logins'}</span>
-        </button>
-
-        {showHints && (
-          <div className="mt-2.5 p-3 rounded-2xl bg-slate-900/90 border border-slate-800 text-left space-y-2 animate-fadeIn">
-            <span className="text-[10px] uppercase font-bold text-slate-400 tracking-wider block">
-              Available Test Accounts (Click to Fill):
-            </span>
-            <div className="space-y-1.5 text-xs">
-              <button
-                type="button"
-                onClick={() => handleFillCredentials('citizen', 'public123')}
-                className="w-full p-2 rounded-xl bg-slate-950 hover:bg-slate-850 border border-slate-800/80 text-left flex items-center justify-between transition-colors group"
-              >
-                <div>
-                  <span className="font-bold text-emerald-400 block text-[11px]">
-                    Citizen Portal
-                  </span>
-                  <span className="text-[10px] text-slate-400 font-mono">
-                    citizen / public123
-                  </span>
-                </div>
-                <span className="text-[10px] text-slate-400 group-hover:text-emerald-400 font-medium">
-                  Use &rarr;
-                </span>
-              </button>
-
-              <button
-                type="button"
-                onClick={() => handleFillCredentials('driver108', 'driver108')}
-                className="w-full p-2 rounded-xl bg-slate-950 hover:bg-slate-850 border border-slate-800/80 text-left flex items-center justify-between transition-colors group"
-              >
-                <div>
-                  <span className="font-bold text-amber-400 block text-[11px]">
-                    Ambulance Driver Portal
-                  </span>
-                  <span className="text-[10px] text-slate-400 font-mono">
-                    driver108 / driver108
-                  </span>
-                </div>
-                <span className="text-[10px] text-slate-400 group-hover:text-amber-400 font-medium">
-                  Use &rarr;
-                </span>
-              </button>
-
-              <button
-                type="button"
-                onClick={() => handleFillCredentials('er_staff', 'staff123')}
-                className="w-full p-2 rounded-xl bg-slate-950 hover:bg-slate-850 border border-slate-800/80 text-left flex items-center justify-between transition-colors group"
-              >
-                <div>
-                  <span className="font-bold text-blue-400 block text-[11px]">
-                    Hospital ER Portal
-                  </span>
-                  <span className="text-[10px] text-slate-400 font-mono">
-                    er_staff / staff123
-                  </span>
-                </div>
-                <span className="text-[10px] text-slate-400 group-hover:text-blue-400 font-medium">
-                  Use &rarr;
-                </span>
-              </button>
-            </div>
-          </div>
-        )}
       </div>
     </div>
   );

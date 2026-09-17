@@ -22,7 +22,6 @@ export const EmergencyConfirmationScreen: React.FC = () => {
   const {
     activeIncident,
     setCurrentScreen,
-    setCurrentRole,
     ambulances,
     hospitals
   } = useApp();
@@ -264,27 +263,15 @@ export const EmergencyConfirmationScreen: React.FC = () => {
         </div>
       </div>
 
-      {/* QUICK ROLE SWITCHER SHORTCUT FOR DEMO */}
-      <div className="rounded-2xl bg-slate-950 border border-slate-800 p-3.5 space-y-2">
-        <span className="text-[11px] text-slate-400 font-medium block text-center">
-          Test Cross-Role Communication (Instant Switch):
-        </span>
-        <div className="grid grid-cols-2 gap-2">
-          <button
-            onClick={() => setCurrentRole('AMBULANCE_DRIVER')}
-            className="p-2 rounded-xl bg-amber-950/60 border border-amber-600/50 hover:bg-amber-900/60 text-amber-300 text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors"
-          >
-            <Ambulance className="w-3.5 h-3.5" />
-            <span>Driver Cockpit</span>
-          </button>
-          <button
-            onClick={() => setCurrentRole('DOCTOR')}
-            className="p-2 rounded-xl bg-purple-950/60 border border-purple-600/50 hover:bg-purple-900/60 text-purple-300 text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors"
-          >
-            <Activity className="w-3.5 h-3.5" />
-            <span>Doctor Triage</span>
-          </button>
+      {/* DISPATCH STATUS REASSURANCE */}
+      <div className="rounded-2xl bg-slate-950 border border-slate-800/80 p-3.5 text-center space-y-1">
+        <div className="flex items-center justify-center gap-1.5 text-xs text-emerald-400 font-bold">
+          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping" />
+          <span>Emergency Response Dispatch Confirmed</span>
         </div>
+        <p className="text-[11px] text-slate-400">
+          Emergency response units are en route with GPS navigation locked to your coordinates. Keep your line open.
+        </p>
       </div>
     </div>
   );

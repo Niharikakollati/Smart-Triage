@@ -187,7 +187,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   
   const [isSosModalOpen, setIsSosModalOpen] = useState(false);
   const [isKotlinCodeOpen, setIsKotlinCodeOpen] = useState(false);
-  const [deviceFrame, setDeviceFrame] = useState(true);
+  const [deviceFrame, setDeviceFrame] = useState(false);
   const [notificationToast, setNotificationToast] = useState<{ message: string; type: 'urgent' | 'info' | 'success' } | null>(null);
 
   const showToast = (message: string, type: 'urgent' | 'info' | 'success' = 'info') => {

@@ -24,7 +24,7 @@ export const BottomNav: React.FC = () => {
     ];
 
     return (
-      <nav className="sticky bottom-0 left-0 right-0 bg-slate-900/95 backdrop-blur-md border-t border-slate-800/80 px-2 py-1.5 z-30 shrink-0">
+      <nav className="lg:hidden sticky bottom-0 left-0 right-0 bg-slate-900/95 backdrop-blur-md border-t border-slate-800/80 px-2 py-1.5 z-30 shrink-0">
         <div className="flex items-center justify-around">
           {navItems.map((item) => {
             const isActive = currentScreen === item.id;
@@ -68,7 +68,7 @@ export const BottomNav: React.FC = () => {
   // AMBULANCE DRIVER NAV
   if (currentRole === 'AMBULANCE_DRIVER') {
     return (
-      <nav className="sticky bottom-0 left-0 right-0 bg-slate-900/95 backdrop-blur-md border-t border-slate-800/80 px-3 py-2 z-30 shrink-0">
+      <nav className="lg:hidden sticky bottom-0 left-0 right-0 bg-slate-900/95 backdrop-blur-md border-t border-slate-800/80 px-3 py-2 z-30 shrink-0">
         <div className="flex items-center justify-around text-xs">
           <button
             onClick={() => setCurrentScreen('AMBULANCE_DASHBOARD')}
@@ -113,7 +113,7 @@ export const BottomNav: React.FC = () => {
 
   // HOSPITAL STAFF NAV
   return (
-    <nav className="sticky bottom-0 left-0 right-0 bg-slate-900/95 backdrop-blur-md border-t border-slate-800/80 px-3 py-2 z-30 shrink-0">
+    <nav className="lg:hidden sticky bottom-0 left-0 right-0 bg-slate-900/95 backdrop-blur-md border-t border-slate-800/80 px-3 py-2 z-30 shrink-0">
       <div className="flex items-center justify-around text-xs">
         <button
           onClick={() => setCurrentScreen('HOSPITAL_DASHBOARD')}
