@@ -1,0 +1,6 @@
+{
+  "name": "Smart Triage",
+  "description": "Emergency healthcare and triage platform connecting accident reporters, ambulance drivers, and hospital ER staff with intelligent triage categorization, women's health, and wellness modules.",
+  "requestFramePermissions": ["geolocation", "camera"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
